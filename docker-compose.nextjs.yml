@@ -8,11 +8,11 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./nextjs:/app
+      - ./frontend:/app
     networks:
       - my-network
     depends_on:
-      - laravel
+      - backend
 
 networks:
   my-network:
