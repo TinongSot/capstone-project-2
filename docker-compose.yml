@@ -1,0 +1,28 @@
+# docker-compose.yml
+version: '3'
+services:
+  laravel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ./laravel:/var/www/html
+    depends_on:
+      - database
+    networks:
+      - my-network
+
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: secret
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
