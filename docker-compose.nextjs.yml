@@ -1,0 +1,19 @@
+# docker-compose.nextjs.yml
+version: '3'
+services:
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile.nextjs
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nextjs:/app
+    networks:
+      - my-network
+    depends_on:
+      - laravel
+
+networks:
+  my-network:
+    driver: bridge
